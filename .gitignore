@@ -1,0 +1,7 @@
+# Cache
+__pycache__/
+# Precompilados
+*.py[cod]
+*$py.class
+# Environment
+env/
