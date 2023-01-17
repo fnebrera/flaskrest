@@ -1,4 +1,4 @@
-Ejemplo de proyecto python con Flask.
+# Ejemplo de proyecto python con Flask
 
 Se trata de un servidor REST muy simple que accede a una base
 de datos en Postgres con una tabla de peliculas y otra con los
