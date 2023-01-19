@@ -11,6 +11,7 @@ from .ext import ma, migrate
 
 
 def create_app(settings_module):
+    """ Crea la aplicación y las extensiones """
     app = Flask(__name__)
     app.config.from_object(settings_module)
 
@@ -37,20 +38,21 @@ def create_app(settings_module):
 
 
 def register_error_handlers(app):
+    """ Registra los manejadores de errores personalizados """
     @app.errorhandler(Exception)
-    def handle_exception_error(e):
+    def handle_exception_error():
         return jsonify({'msg': 'Internal server error'}), 500
 
     @app.errorhandler(405)
-    def handle_405_error(e):
+    def handle_405_error():
         return jsonify({'msg': 'Method not allowed'}), 405
 
     @app.errorhandler(403)
-    def handle_403_error(e):
+    def handle_403_error():
         return jsonify({'msg': 'Forbidden error'}), 403
 
     @app.errorhandler(404)
-    def handle_404_error(e):
+    def handle_404_error():
         return jsonify({'msg': 'Not Found error'}), 404
 
     @app.errorhandler(AppErrorBaseClass)
