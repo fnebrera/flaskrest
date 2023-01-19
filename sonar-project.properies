@@ -1,0 +1,2 @@
+sonar.projectKey=comunytek.com:flaskrest
+sonar.qualitygate.wait=true
