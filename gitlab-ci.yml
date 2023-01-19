@@ -1,0 +1,71 @@
+############################################################################
+# Usamos el pipeline simple para python.
+# El codigo en el proyecto "cicd-librerias" puede ser consultado
+# por cualquier miembro del grupo "comunytek", pero sólo pueden
+# editarlo los managers. El pipeline que usamos en este proyecto es:
+#
+#     /comunytek/cicd-librerias/pipelines/python-simple.yml
+#
+############################################################################
+
+variables:
+  ##
+  # Del proyecto. Deben definirse en la configuracion CI/CD del proyecto, de modo que solo sean accesibles
+  # para usuarios del proyecto con role 'mantainer'. Para el proyecto selfwebspringboot son las siguientes:
+  ##
+  #
+  # Para Terraform:
+  #
+  # TF_ROOT: Directorio raiz de la definición de aprovisionamiento de Terraform
+  # TF_VAR_HYPERVISOR_USER: Usuario de login del host Hyper-V (debe tener derechos de Administrador)
+  # TF_VAR_HYPERVISOR_PASSWD: Password de dicho usuario
+  #
+  # Para deploy
+  #
+  # DEPLOY_SSH_USER: Usuario a emplear para conectar por SSH con la VM creada
+  # DEPLOY_SSH_KEY: Variable tipo 'File' que contiene la clave privada para acceder por SSH a la nueva VM
+  # DEPLOY_SSH_PATH: Path donde vamos a instalar/actualizar el producto
+  # DEPLOY_SSH_SVC_NAME: Nombre del servicio docker que vamos a crear/instalar
+  #
+  ##
+  # Variables accesibles a todos los usuarios con role 'developer' o superior
+  ##
+  #
+  # Si registramos, creamos docker y tag de SNAPSHOT, debemos asignar
+  # un numero de snapshot a la vesion del proyecto para identificar registros y tag.
+  #
+  SNAPSHOT_NUMBER: "002"
+  #
+  # Si estamos en una rama de hotfix, se ejecuta todo el pipeline de la CI,
+  # aunque las etapas sonar y test admiten errores.
+  # Comentar esta linea, o dejar en blanco el valor, una vez liberado el hotfix.
+  # Opcionalmente, podemos indicar un numero de hotfix, para registro, docker y tag.
+  # En la version del proyecto, se respeta la que se indica en el pom.xml. 
+  #
+  HOTFIX_BRANCH: ""
+  HOTFIX_NUMBER: "002"
+  #
+  # Prefijo para el registry docker, solo si no es el propio de gitlab
+  #
+  DOCKER_REGISTRY_NAME: "fnebrera/selfweb"
+  #
+  # Control local del pipeline
+  #
+  PREPARE_CLEAN_CACHE: "false"
+  RUN_CI_STAGES: "true"
+  RUN_REGISTER_STAGES: "false"
+  RUN_PROVISION_STAGES: "true"
+  RUN_DEPLOY_STAGES: "true"
+
+#
+# Pipeline predefinido
+#
+include:
+   project: 'comunytek/cicd-librerias'
+   ref: master
+   file: 'pipelines/python-simple.yml'
+   
+# Actualizado el 19/01/2023 20:19
+############################# E O F ##############################
+
+   
