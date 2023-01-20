@@ -31,10 +31,16 @@ variables:
   # Variables accesibles a todos los usuarios con role 'developer' o superior
   ##
   #
+  # En python existen diversas técnicas para definir el nombre y versión de un proyecto. Para que la libreria
+  # cidcd-librerias sea generica, se ha optado por definir como variables del proyecto las siguientes:
+  #
+  PROJECT_NAME: "flaskrest"
+  PROJECT_VERSION: "0.0.1-SNAPSHOT"
+  #
   # Si registramos, creamos docker y tag de SNAPSHOT, debemos asignar
   # un numero de snapshot a la vesion del proyecto para identificar registros y tag.
   #
-  SNAPSHOT_NUMBER: "002"
+  SNAPSHOT_NUMBER: "001"
   #
   # Si estamos en una rama de hotfix, se ejecuta todo el pipeline de la CI,
   # aunque las etapas sonar y test admiten errores.
@@ -43,19 +49,19 @@ variables:
   # En la version del proyecto, se respeta la que se indica en el pom.xml. 
   #
   HOTFIX_BRANCH: ""
-  HOTFIX_NUMBER: "002"
+  HOTFIX_NUMBER: "001"
   #
   # Prefijo para el registry docker, solo si no es el propio de gitlab
   #
-  DOCKER_REGISTRY_NAME: "fnebrera/selfweb"
+  DOCKER_REGISTRY_NAME: ""
   #
   # Control local del pipeline
   #
   PREPARE_CLEAN_CACHE: "false"
   RUN_CI_STAGES: "true"
   RUN_REGISTER_STAGES: "false"
-  RUN_PROVISION_STAGES: "true"
-  RUN_DEPLOY_STAGES: "true"
+  RUN_PROVISION_STAGES: "false"
+  RUN_DEPLOY_STAGES: "false"
 
 #
 # Pipeline predefinido
