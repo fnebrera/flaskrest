@@ -7,7 +7,7 @@ def test_list_films():
     """
     Test de listado de películas
     """
-    test_app = create_app('config.default')
+    test_app = create_app('config.test')
     test_app.testing = True
     with test_app.test_client() as client:
         response = client.get('/api/v1/films')
