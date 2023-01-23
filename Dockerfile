@@ -4,10 +4,14 @@ WORKDIR /usr/src/app
 RUN pip install virtualenv
 RUN virtualenv env
 RUN . env/bin/activate
-COPY requirements.txt ./
-RUN pip install -r requirements.txt
 
-COPY . .
+COPY entrypoint.py ./
+COPY app ./app
+COPY config ./config
+COPY run.sh ./
+COPY requirements.txt ./
+
+RUN pip install -r requirements.txt
 RUN chmod +x run.sh
 
 CMD [ "./run.sh" ]
