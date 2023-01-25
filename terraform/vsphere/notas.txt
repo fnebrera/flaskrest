@@ -1,0 +1,47 @@
+Preparacion de la Plantilla
+----------------------------
+
+En vSphere, la forma más simple de provisionar una máquina virtual es partir de una
+plantilla (template). Para construir dicha plantilla, en este ejemplo hemos hecho lo siguiente:
+1. Obtenemos de la red la image ISO de un debian bullseye, en este ejemplo "debian-11.5.0-amd64-netinst.iso".
+2. Desde la consola de vCenter, subimos esta imagen a un datastore de trabajo. Normalmente a una carpeta "ISOs" o similar.
+2. Creamos una VM tipo debian 11 64bits, y enlazamos el cdrom a la imagen ISO anterior, con algo similar a lo siguiente:
+		Nombre: debian-seed-vm
+		Familia: linux
+		Version: Debian GNU/linux 11 (64 bits)
+   		CPU: 1
+		Memoria: 2 GB
+		Disco: 8 GB
+3. Arrancamos la máquina y seleccionamos "Graphical install":
+		Definimos password de root
+		Usuario adicional: Administrador VASS
+		Username: vassadmin
+		Password: Poner una protegida, que solo conozca sysadmin. Provisionalmente Lolo2756
+		Formateo disco: todo el disco con LVM
+		Una sola particion (recomendable en maquinas virtuales)
+		Tamaño usado: max
+		Seleccion de programas:
+			- SSH server
+			- Utilidades estándar
+		Apagamos la máquina, quitamsos el ISO del cdrom, arrancamos y hacemos login como root.
+3. Instalamos docker y docker-compose
+		apt-get update && apt-get upgrade
+		apt-get install docker docker-compose
+4. Configuramos sudo
+        apt-get install sudo
+		visudo
+            Cambiamos la linea del grupo sudo y ponemos NOPASSWD: ALL
+			%sudo	ALL=(ALL)	NOPASSWD: ALL
+5. Agregamos usuario 'vassadmin' a los grupos sudo y docker
+		adduser vassadmin  docker
+		adduser vassadmin  sudo
+7. Desde otro linux de trabajo, copiamos nuestra clave publica al usuario vassadmin y probamos conexion
+		ssh-copy-id -i <miclave.pub> vassadmin@<ip actual de la maquina semilla>
+		ssh -i <miclave> vassadmin@<ip actual de la maquina semilla>
+8. Apagamos la maquina y clonamos a una plantilla con nombre "debian-plantilla":
+		Seleccionamos la VM, con botón derecho:
+			Clonar -> Clonar a plantilla
+9. Si estamos faltos de espacio, podemos eliminar la maquina semilla. Si no es así, conviene mantenerla, por si se requiere instalar o configurar
+   algo adicional en el futuro.
+		
+====================== E O F ================================

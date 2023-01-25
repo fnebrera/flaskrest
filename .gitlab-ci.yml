@@ -59,8 +59,8 @@ variables:
   #
   PREPARE_CLEAN_CACHE: "false"
   RUN_CI_STAGES: "false"
-  RUN_REGISTER_STAGES: "true"
-  RUN_PROVISION_STAGES: "false"
+  RUN_REGISTER_STAGES: "false"
+  RUN_PROVISION_STAGES: "true"
   RUN_DEPLOY_STAGES: "false"
 
 #
