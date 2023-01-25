@@ -8,10 +8,9 @@ services:
             - postgres
         restart: unless-stopped
         volumes:
-            - selfweb_log:/var/log/selfweb
             - flask_config:/usr/src/app/config
         networks:
-            - selfweb_network
+            - flask_network
                                                     
     nginx:
         image: nginx:1.23.1
@@ -23,10 +22,9 @@ services:
         restart: unless-stopped
         volumes:
             - nginx_config:/etc/nginx
-            - nginx_data:/var/www/html
             - nginx_log:/var/log/nginx
         networks:
-            - selfweb_network
+            - flask_network
             
     postgres:
         container_name: postgres_14
@@ -36,7 +34,7 @@ services:
         volumes:
             - postgres_data:/var/lib/postgresql/data
         networks:
-            - selfweb_network
+            - flask_network
         restart: unless-stopped
         environment:
             POSTGRES_PASSWORD: postgres
@@ -51,7 +49,7 @@ services:
             - portainer_data:/data
             - /var/run/docker.sock:/var/run/docker.sock
         networks:
-            - selfweb_network
+            - flask_network
         
 volumes:
     flask_config:
@@ -66,7 +64,7 @@ volumes:
         external: true
 
 networks:
-    selfweb_network:
-        name: selfweb_network
+    flask_network:
+        name: flask_network
         external: true
 
