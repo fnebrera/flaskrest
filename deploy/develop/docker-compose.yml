@@ -54,13 +54,9 @@ services:
             - selfweb_network
         
 volumes:
-    selfweb_log:
-        external: true
-    selfweb_config:
+    flask_config:
         external: true
     nginx_config:
-        external: true
-    nginx_data:
         external: true
     nginx_log:
         external: true
