@@ -57,7 +57,7 @@ variables:
   #
   # Control local del pipeline
   #
-  PREPARE_CLEAN_CACHE: "true"
+  PREPARE_CLEAN_CACHE: "false"
   RUN_CI_STAGES: "false"
   RUN_REGISTER_STAGES: "false"
   RUN_PROVISION_STAGES: "true"
@@ -71,7 +71,7 @@ include:
    ref: master
    file: 'pipelines/python-simple.yml'
    
-# Actualizado el 25/01/2023 10:38
+# Actualizado el 25/01/2023 10:41
 ############################# E O F ##############################
 
    
