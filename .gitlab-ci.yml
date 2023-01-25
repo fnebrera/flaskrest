@@ -61,7 +61,7 @@ variables:
   RUN_CI_STAGES: "false"
   RUN_REGISTER_STAGES: "false"
   RUN_PROVISION_STAGES: "true"
-  RUN_DEPLOY_STAGES: "false"
+  RUN_DEPLOY_STAGES: "true"
 
 #
 # Pipeline predefinido

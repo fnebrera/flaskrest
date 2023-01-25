@@ -1,0 +1,2 @@
+Por el momento, este archivo sólo sirve para que el "put -R deploy" cree todos los directorios necesarios.
+En proximas versiones, podrian indicase parametros u otros datos para crear este network.

@@ -1,0 +1,76 @@
+version: "3.7"
+
+services:
+    flaskrest:
+        image: ninguna
+        container_name: flaskrest
+        depends_on:
+            - postgres
+        restart: unless-stopped
+        volumes:
+            - selfweb_log:/var/log/selfweb
+            - flask_config:/usr/src/app/config
+        networks:
+            - selfweb_network
+                                                    
+    nginx:
+        image: nginx:1.23.1
+        container_name: nginx
+        depends_on:
+            - flaskrest
+        ports:
+            - 443:443
+        restart: unless-stopped
+        volumes:
+            - nginx_config:/etc/nginx
+            - nginx_data:/var/www/html
+            - nginx_log:/var/log/nginx
+        networks:
+            - selfweb_network
+            
+    postgres:
+        container_name: postgres_14
+        image: postgres:14.4
+        ports:
+            - 5432:5432
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        networks:
+            - selfweb_network
+        restart: unless-stopped
+        environment:
+            POSTGRES_PASSWORD: postgres
+            
+    portainer:
+        image: portainer/portainer-ce
+        container_name: portainer
+        ports:
+            - 9000:9000
+        restart: unless-stopped
+        volumes:
+            - portainer_data:/data
+            - /var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - selfweb_network
+        
+volumes:
+    selfweb_log:
+        external: true
+    selfweb_config:
+        external: true
+    nginx_config:
+        external: true
+    nginx_data:
+        external: true
+    nginx_log:
+        external: true
+    portainer_data:
+        external: true
+    postgres_data:
+        external: true
+
+networks:
+    selfweb_network:
+        name: selfweb_network
+        external: true
+
