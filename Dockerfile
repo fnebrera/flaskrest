@@ -8,7 +8,6 @@ RUN . env/bin/activate
 COPY entrypoint.py ./
 COPY app ./app
 RUN mkdir -p ./config
-#COPY config ./config
 COPY run.sh ./
 COPY requirements.txt ./
 
