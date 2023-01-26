@@ -60,7 +60,7 @@ variables:
   PREPARE_CLEAN_CACHE: "false"
   RUN_CI_STAGES: "false"
   RUN_REGISTER_STAGES: "false"
-  RUN_PROVISION_STAGES: "false"
+  RUN_PROVISION_STAGES: "true"
   RUN_DEPLOY_STAGES: "true"
 
 #
@@ -71,7 +71,7 @@ include:
    ref: master
    file: 'pipelines/python-simple.yml'
    
-# Actualizado el 25/01/2023 13:14
+# Actualizado el 26/01/2023 09:18
 ############################# E O F ##############################
 
    
