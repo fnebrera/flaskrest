@@ -17,11 +17,13 @@ variables:
   # Para Terraform:
   #
   # TF_ROOT: Directorio raiz de la definición de aprovisionamiento de Terraform
+  # TF_VAR_HYPERVISOR_HOST: Ip/hostname del host donde reside el hypervisor
   # TF_VAR_HYPERVISOR_USER: Usuario de login del host Hyper-V (debe tener derechos de Administrador)
   # TF_VAR_HYPERVISOR_PASSWD: Password de dicho usuario
   #
   # Para deploy
   #
+  # DEPLOY_ROOT: Directorio raiz de la definición y datos para el despliegue de la aplicación.
   # DEPLOY_SSH_USER: Usuario a emplear para conectar por SSH con la VM creada
   # DEPLOY_SSH_KEY: Variable tipo 'File' que contiene la clave privada para acceder por SSH a la nueva VM
   # DEPLOY_SSH_PATH: Path donde vamos a instalar/actualizar el producto
