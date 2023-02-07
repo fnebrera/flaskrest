@@ -52,7 +52,8 @@ variables:
   HOTFIX_BRANCH: ""
   HOTFIX_NUMBER: "001"
   #
-  # Prefijo para el registry docker, solo si no es el propio de gitlab
+  # Prefijo para el registry docker, solo si no es el propio de gitlab,
+  # es decir, sólo si se usa un registry externo (p.e. dockerhub).
   #
   DOCKER_REGISTRY_NAME: "fnebrera/flaskrest"
   #DOCKER_REGISTRY_NAME: ""
