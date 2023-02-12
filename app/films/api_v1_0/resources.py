@@ -24,6 +24,11 @@ Creamos la api de Flask-RESTful sobre el blueprint films_v1_0_bp
 api = Api(films_v1_0_bp)
 
 """
+Constantes
+"""
+NOT_FOUND = 'La película no existe'
+
+"""
 Definición del recurso FilmListResource.
 Este recurso implementa los métodos GET y POST para la lista de películas:
 GET devuelve la lista de películas.
@@ -59,13 +64,13 @@ class FilmResource(Resource):
     def get(self, film_id):
         film = Film.get_by_id(film_id)
         if film is None:
-            raise ObjectNotFound('La película no existe')
+            raise ObjectNotFound(NOT_FOUND)
         resp = film_schema.dump(film)
         return resp
     def put(self, film_id):
         film = Film.get_by_id(film_id)
         if film is None:
-            raise ObjectNotFound('La película no existe')
+            raise ObjectNotFound(NOT_FOUND)
         data = request.get_json()
         film_dict = film_schema.load(data)
         film.title = film_dict['title']
@@ -81,7 +86,7 @@ class FilmResource(Resource):
     def delete(self, film_id):
         film = Film.get_by_id(film_id)
         if film is None:
-            raise ObjectNotFound('La película no existe')
+            raise ObjectNotFound(NOT_FOUND)
         film.delete()
         return '', 204
 
