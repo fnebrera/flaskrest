@@ -41,7 +41,7 @@ variables:
   # Si registramos, creamos docker y tag de SNAPSHOT, debemos asignar
   # un numero de snapshot a la vesion del proyecto para identificar registros y tag.
   #
-  SNAPSHOT_NUMBER: "001"
+  SNAPSHOT_NUMBER: "002"
   #
   # Si estamos en una rama de hotfix, se ejecuta todo el pipeline de la CI,
   # aunque las etapas sonar y test admiten errores.
@@ -74,7 +74,7 @@ include:
    ref: master
    file: 'pipelines/python-simple.yml'
    
-# Actualizado el 12/02/2023 17:53
+# Actualizado el 12/02/2023 17:57
 ############################# E O F ##############################
 
    
