@@ -43,13 +43,18 @@ variable "VM_NAME" {
 }
 
 variable "VM_SIZE" {
-    description     = "Tamaño de la maquina virtual a crear/emplear"
+    description     = "Tamaño (memoria, CPUs) de la maquina virtual a crear/emplear"
     type            = string
 }
 
 variable "DISK_SIZE" {
     description     = "Tamaño del disco a crear/emplear"
     type            = number
+}
+
+variable "DISK_NAME" {
+    description     = "Nombre del disco a crear/emplear"
+    type            = string
 }
 
 variable "SUBNET_NAME" {

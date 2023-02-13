@@ -67,7 +67,7 @@ resource "azurerm_virtual_machine" "test-cicd" {
   ]
 
   storage_os_disk {
-    name                 = "MainDisk"
+    name                 = var.DISK_NAME
     caching              = "ReadWrite"
     create_option        = "FromImage"
     disk_size_gb         = var.DISK_SIZE
