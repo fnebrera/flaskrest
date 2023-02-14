@@ -74,7 +74,7 @@ include:
    ref: master
    file: 'pipelines/python-simple.yml'
    
-# Actualizado el 13/02/2023 11:00
+# Actualizado el 14/02/2023 11:11
 ############################# E O F ##############################
 
    
